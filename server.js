@@ -1,11 +1,12 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const { chats } = require("./data");
-
+const connectDB = require("./config/db");
+const colors = require("colors");
 const app = express();
 dotenv.config();
 const port = process.env.PORT || 5000;
-
+connectDB();
 app.get("/", (req, res) => {
   res.send("running");
 });
@@ -24,5 +25,5 @@ app.listen(port, (error) => {
     console.log(error);
     return;
   }
-  console.log(`server started on port ${port}`);
+  console.log(`server started on port ${port}`.red.bold);
 });
